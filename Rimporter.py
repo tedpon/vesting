@@ -1,7 +1,7 @@
 from selenium import webdriver
 import time
 import datetime
-now = datetime.datetime.now()
+now = datetime.datetime.now() - datetime.timedelta(minutes=17)
 
 # Determine if anymore active listings
 if now.hour <= 7:
