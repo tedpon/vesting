@@ -15,7 +15,7 @@ import re
 
 
 # Asuntosivuston (etuovi) URL ja siihen beautifulsoupin vastaukset
-url1 = 'https://www.etuovi.com/myytavat-asunnot?haku=M1957172036'
+url1 = 'https://www.etuovi.com/myytavat-asunnot?haku=M2061581391'
 vastaus = requests.get(url1)
 html = vastaus.content
 soup = BeautifulSoup(html, 'html.parser')
@@ -24,7 +24,7 @@ soup = BeautifulSoup(html, 'html.parser')
 talot = []
 
 # Etsitään kaikki sivulla näkyvät ilmoitukset ja niiden URL. Lisätään hakutulokset listaan
-kohteet = soup.find_all(class_="mui-style-wd5k0 e12nd9f313")
+kohteet = soup.find_all(class_="mui-style-wp78j0 e1re311t2")
 for kohde in kohteet:
     if kohde is not None:
         kohdeURL = kohde["href"]
@@ -32,7 +32,7 @@ for kohde in kohteet:
         talot.append(kohdeURL)
 
 # Exceltiedosto
-sijainti = "D:\\Koulu\\talot.xlsx"
+sijainti = "C:\\Users\\LauriTeittinen\\Documents\\talot.xlsx"
 exceltiedosto = openpyxl.load_workbook(sijainti)
 sheet = exceltiedosto.active
 
@@ -57,7 +57,7 @@ for x in talot:
         soupINNER = BeautifulSoup(htmlINNER, 'html.parser')
 
         # Haetaan hinta
-        hintaluokka = soupINNER.find_all(class_="flexboxgrid__col-xs-4__p2Lev flexboxgrid__col-md-5__3SFMx")
+        hintaluokka = soupINNER.find_all(class_="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-5 mui-style-1ymh2wi")
         #print(hintaluokka)
         for xhinta in hintaluokka:
                 hinta1 = xhinta.find("h3").text
@@ -66,7 +66,7 @@ for x in talot:
                 
         
         # Haetaan rakennusvuosi
-        rakennusvuosi = soupINNER.find_all(class_="flexboxgrid__col-xs-4__p2Lev flexboxgrid__col-md-3__1YPhN")
+        rakennusvuosi = soupINNER.find_all(class_="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-3 mui-style-1niyv08")
         #print(rakennusvuosi)
         for xvuosi in rakennusvuosi:
                 rakennusvuosi1 = xvuosi.find("h3").text
@@ -74,7 +74,7 @@ for x in talot:
                 sheet.cell(row=row, column=4, value=rakennusvuosi1)
 
         # Haetaan osoite
-        osoiteluokka = soupINNER.find_all(class_="flexboxgrid__col-xs-12__1I1LS flexboxgrid__col-md-6__1n8OT ItemSummaryContainer__alignLeft__2IE5Z")
+        osoiteluokka = soupINNER.find_all(class_="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 oqCVsVj mui-style-1bi94kt")
         #print(osoiteluokka)
         for xosoite in osoiteluokka:
                 hinta3 = xosoite.find("h1").text
@@ -82,7 +82,7 @@ for x in talot:
                 sheet.cell(row=row, column=5, value=hinta3)
 
         # Haetaan asunnon pinta-ala neliömetreinä
-        asunnonkoko = soupINNER.find_all(class_="flexboxgrid__col-xs-4__p2Lev flexboxgrid__col-md-4__2DYW-")
+        asunnonkoko = soupINNER.find_all(class_="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-4 mui-style-j3iqgs")
         #print(asunnonkoko)
         for xkoko in asunnonkoko:
                 hinta4 = xkoko.find("span").text
@@ -90,7 +90,7 @@ for x in talot:
                 sheet.cell(row=row, column=6, value=hinta4)
 
         # Haetaan huonemäärä
-        huonemäärä = soupINNER.find("h2", {"class":"ItemSummaryContainer__subTitle__2OjGg"})
+        huonemäärä = soupINNER.find("h2", {"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 oqCVsVj mui-style-1bi94kt"})
         huonemäärä1 = huonemäärä.text.strip()
         #print(huonemäärä1)
         for xhuone in huonemäärä:
