@@ -32,7 +32,7 @@ for kohde in kohteet:
         talot.append(kohdeURL)
 
 # Exceltiedosto
-sijainti = "C:\\Users\\LauriTeittinen\\Documents\\talot.xlsx"
+sijainti = "C:\\Users\\----------"
 exceltiedosto = openpyxl.load_workbook(sijainti)
 sheet = exceltiedosto.active
 
@@ -109,8 +109,8 @@ for x in talot:
         # Lähetetään viesti Telegrammin kautta, mikäli ilmoitus on tarpeeksi hyvä
         if hinta11 <= 80000 and hinta44 <= 2000 and rakennusvuosi11 >= 1950:
                 # Tiedot, jotka tarvitaan viestin lähettämiseen
-                api_token = "1875360167:AAHZ3lgvc9SI8am3-mtjB_sAPdleOAf-LF0"
-                chat_id = "1589437132"
+                api_token = "---apitoken-----"
+                chat_id = "---chatid"
 
                 message = ("Uusi ilmoitus! \n Hinta: " + hinta1 + "\n Rakennusvuosi: " + rakennusvuosi1 + "\n Neliöhinta: " + str(neliöhinta1) + "€ \n URL: " + taloURL)
 
